@@ -1,0 +1,11 @@
+**
+!engine-bin/
+!engine-bin/**
+!out/
+!out/**
+!assets/
+!assets/**
+!README.md
+!LICENSE.txt
+!package.json
+package-lock.json
