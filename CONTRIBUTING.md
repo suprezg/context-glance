@@ -2,33 +2,28 @@
 
 ## Directory Naming & Nomenclature
 
-- Files, Folders & Packages: `kebab-case` (e.g., `shopping-cart.py`).
+### Nomenclature (Rust)
+- Files, Folders & Packages: `lower_snake_case` (e.g., `shopping_cart.rs`).
 - Namespaces, Classes, Enums, Structs, Interfaces: `PascalCase` (e.g., `ShoppingCart`).
-- Functions & Methods: `camelCase` (e.g., `addItem`, `totalAmount`).
-- Normal Variables, Parameters and Arguments: `lower_snake_case` (e.g. `user_id`)
+- Functions & Methods: `lower_snake_case` (e.g., `add_item`, `total_item`).
+- Normal Variables, Parameters and Arguments: `lower_snake_case` (e.g., `user_id`).
 - Constants, Final and Global Variables: `UPPER_SNAKE_CASE` (e.g., `MAX_ITEMS`).
 
-## Coding Structure & Formatting
+### Nomenclature (TypeScript)
+- Files, Folders & Packages: `lowercase` (e.g., `shoppingcart.zig`).
+- Namespaces, Classes, Enums, Structs, Interfaces: `PascalCase` (e.g., `ShoppingCart`).
+- Functions & Methods: `camelCase` (e.g., `addItem`, `totalItem`).
+- Normal Variables, Parameters and Arguments: `camelCase` (e.g., `userId`).
+- Constants, Final and Global Variables: `UPPER_SNAKE_CASE` (e.g., `MAX_ITEMS`).
 
-- File Header: Every file must start with a header comment including the File Name and Purpose.
+### Structure & Formatting
+
+- File Header: Every file must start with a header comment that includes the File Name and Purpose.
 - Top-Level Imports: Imports must be placed at the very top of the file, immediately following the header comment.
 - Top-Level Declarations: All Global, Final, Constant, and Static variables must be declared at the top of the file, immediately after the imports.
-- Class/Enum Comments: Every Namespace, Class, Struct, Enum, Union, and Interface must have a short multiline comment explaining its purpose.
-- Function/Method Comments: Every function/method must have a short multiline comment explaining its purpose, parameters (Takes), and return value (Gives) using this exact format:
-
-    ```text
-    [Clear, concise description of the method/function's purpose]
-
-    Takes:
-        [parameter_name] ([type]): [Description of what it takes].
-
-    Gives:
-        [type]: [Description of what it returns].
-    ```
-
-- CRITICAL: Do not use single-line comments (# ...) under any circumstances. All comments must be block/multiline comments or docstrings.
-- Structural Brackets: Brackets for Namespaces, Classes, Structs, Enums, Methods, and Functions must start on the next line.
-- Conditional Brackets: Brackets for Conditional Statements must start on the same line.
+- Bracket Placement: All brackets—including those for Namespaces, Classes, Structs, Enums, Methods, Functions, and Conditional Statements—must start on the same line to reduce the number of lines.
+- Unified Structural Comments: Every Namespace, Module, Class, Struct, Enum, Union, Interface, Method, and Function must have exactly one block comment or docstring placed directly above its definition. The comment must be a clear, concise description explaining either what it does or why it exists, avoiding obvious line-by-line repetitions of the code syntax. Do not include verbose, explicit breakdowns for parameters or return values unless the context is highly abstract or unusual. Inside functions and methods, group code together and write a small one-line comment directly above the block explaining what it does or why it exists.
+- Code Formatting: Use Newspaper Code Structure which organizing the code vertically, where high level concepts are at the top and as you move down through the file the implementation details increase, and the lowest level helper functions sit at the very bottom.
 
 ## Branching & Commits
 
