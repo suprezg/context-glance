@@ -1,87 +1,76 @@
 # Context Glance
 
 <p align="center">
-    <img src="./assets/banner.png" alt="Context Glance Banner">
+    <img src="assets/banner.png" alt="Context Glance Banner">
     <br />
+    <br />
+    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+    <img src="https://img.shields.io/badge/Rust_Engine-dea584?style=for-the-badge&logo=rust&logoColor=white" alt="Rust">
     <br />
     <img src="https://img.shields.io/badge/VS_Code_Extension-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="VS Code Extension">
-    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
-    <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite 3">
-    <img src="https://img.shields.io/badge/Hybrid_Search-MiniSearch-brightgreen?style=for-the-badge" alt="Hybrid Search">
-    <img src="https://img.shields.io/badge/LaTeX-KaTeX-11a880?style=for-the-badge&logo=latex&logoColor=white" alt="KaTeX Math">
+    <img src="https://img.shields.io/badge/Tantivy-Search_Engine-ff6600?style=for-the-badge" alt="Tantivy">
+    <img src="https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite 3">
     <img src="https://img.shields.io/badge/Diagrams-Mermaid-ff3670?style=for-the-badge&logo=mermaid&logoColor=white" alt="Mermaid Diagrams">
+    <img src="https://img.shields.io/badge/LaTeX-KaTeX-11a880?style=for-the-badge&logo=latex&logoColor=white" alt="KaTeX Math">
     <br />
     <br />
-    <i>In-Editor Hybrid Knowledge Navigator — A zero-tab, keyboard-first documentation glance, rich media reference, and code snippet injection engine for Visual Studio Code.</i>
+    <i>In Editor Keyboard Driven Knowledge Navigator</i>
 </p>
-
-> [!NOTE]
-> **Active Development:** This project is currently a work in progress and is being actively built.
-
-
----
 
 ## Abstract
 
-**Context Glance** is a high-performance, keyboard-centric Visual Studio Code extension engineered to eliminate the severe context switching and tab clutter associated with referencing technical documentation, runbooks, personal knowledge bases (e.g., Obsidian, Foam, Logseq), and architectural specifications. 
+Context Glance is a high-performance referencer designed to reference knowledge stored in Markdown files. It enables you to reference your existing personal and team knowledge bases from tools such as Obsidian, Logseq, or Foam directly within your development environment. Whether you are consulting technical documentation, API guides, architecture specifications, or project runbooks, Context Glance keeps your technical knowledge readily accessible alongside your source code.
 
-Built using TypeScript and powered by a local embedded SQLite database alongside an in-memory hybrid search index (MiniSearch / FlexSearch), Context Glance ingests both **Markdown (`.md`)** and **HTML (`.html`)** files across single or multiple user-configured directories. Rather than scanning files sequentially or treating entire documents as monolithic strings, the extension uses a background worker thread pipeline to perform semantic paragraph- and block-level chunking. 
+Context Glance provides keyboard-first, Vim-style navigation that lets you navigate through entire Markdown documents using only the keyboard. It enables you to yank (copy) code blocks and LaTeX mathematical equations directly to your system clipboard with a single keypress. Note that Context Glance yanks content directly to your clipboard rather than inserting it at your editor cursor position, giving you full control over when and where you paste it.
 
-Developers can glance at documentation directly beneath their active cursor in a zero-tab **Inline Peek View** or dive deep into long-form guides in a **Dedicated Tab View** equipped with full Vim homerow navigation (`j`, `k`, `gg`, `G`), a sticky Table of Contents overlay, and visual text selection. With built-in hardware-accelerated rendering for **Mermaid diagrams**, **LaTeX/KaTeX formulas**, code syntax highlighting, and collapsible HTML blocks (`<details>`, `<summary>`), Context Glance brings your entire knowledge base into your coding flow without ever requiring your hands to leave the keyboard.
-
----
+The system features fast and typo-tolerant search powered by an indexed BM25 search mechanism with an automated fuzzy search fallback. It accepts multi-directory configurations with fast background scanning and indexing across multiple knowledge bases. Context Glance presents your documentation in a 2D minimalist interface supporting Mermaid diagrams, LaTeX/KaTeX mathematical formulas, and syntax-highlighted code blocks, equipped with two default pre-configured themes (Dark and Light) and an automated custom theme palette generator.
 
 ## Objective
 
-Context Glance aims to solve three fundamental friction points in the modern developer experience:
+Context Glance is built to achieve two core objectives:
 
-1. **Eliminate Context Switching & Tab Clutter**: Traditional note-taking tools, browser windows, and editor tabs disrupt mental focus and fragment IDE window layouts. Context Glance delivers instant documentation access through an inline peek card anchored directly to the active cursor line that can be summoned and dismissed in milliseconds without opening permanent editor tabs.
-2. **Deliver Blazing-Fast Hybrid Retrieval**: Navigating large directory trees with naive full-text grep is slow and noisy. Context Glance implements a two-stage hybrid retrieval strategy: an instant O(1) direct index lookup for exact anchor slugs, heading markers, and highlighted symbols, coupled with an automatic fallback to high-speed fuzzy search for natural language queries.
-3. **Achieve 100% Keyboard Ergonomics & Seamless Snippet Injection**: Developers should never have to reach for a mouse to read documentation, jump sections, copy code, or even configure directory paths. Context Glance is designed from the ground up to be completely keyboard-driven, including one-key snippet injection that automatically detects cursor indentation and inserts code blocks with pristine structural alignment.
+The first objective is seamless in-editor reference. Developers frequently lose focus jumping between editor windows and external web browsers, or managing dozens of open documentation tabs. Context Glance eliminates this friction by bringing reference documentation directly into the editor viewport, allowing you to search, read, and cross-reference technical documentation without switching windows or interrupting your flow.
 
----
+The second objective is 100% keyboard-driven navigation. Navigating and referencing documentation should never require reaching for a mouse. With Context Glance, every interaction—switching between open documents, scrolling and jumping across content blocks, searching, yanking code and formulas to the clipboard, and closing tabs—is executed entirely through the keyboard. You can switch, reference, navigate, and close any document while staying completely on the keyboard without ever touching the mouse.
 
 ## Features
 
 ### Functional
 
-- **Multi-Format Support**: Ingests and renders both Markdown (`.md`, `.markdown`) and HTML (`.html`, `.htm`) documents.
-- **Multi-Directory Configuration**: Point to a single folder or multiple directory paths with zero-mouse setup via the Command Palette.
-- **Dual Viewport Modes**: Zero-tab Inline Peek Mode (`Ctrl+Alt+G`) below the cursor and Dedicated Tab Mode (`Ctrl+Alt+Shift+G`) for deep-dive reading.
-- **Vim Homerow Navigation**: Dedicated tabs feature `j`/`k` line scrolling, `gg`/`G` bounds jumping, `t` TOC outline toggle, `v` visual text selection, and `q` quick exit.
-- **Rich Media & Math Rendering**: Renders LaTeX/KaTeX equations, Mermaid diagrams, syntax-highlighted code blocks, and collapsible `<details>/<summary>` tags.
-- **Block & Paragraph-Level Chunking**: Splits documents into semantic AST blocks (headings, paragraphs, code fences, HTML blocks) for precision section jumping.
-- **Hybrid Indexing + Search**: Instant O(1) SQLite lookups for exact anchors/symbols with automatic fallback to in-memory fuzzy search (MiniSearch / FlexSearch).
-- **Indentation-Preserving Snippet Injection**: Press `Ctrl+Shift+Enter` in Peek view to extract code snippets and insert them at cursor matching surrounding indentation.
-- **Live Incremental File Watching**: Monitors directories in real-time, automatically updating SQLite records and search indexes upon file modifications.
+- **Multiple Document Viewing Support**: Open and concurrently reference multiple documents inside a single VS Code webview panel, navigated entirely with single-key shortcuts without requiring multi-key chords or complex combinations like `Ctrl+Tab`.
+- **100% Keyboard-Driven Vim-Style Navigation**: Complete hands-on-keyboard experience where searching, block navigation, clipboard yanking, tab switching, and closing are all performed through keyboard keys.
+- **Multiple Directory Support**: Connect and index multiple documentation folders and knowledge base repositories concurrently.
+- **Rich Media Support**: Full Markdown rendering along with safe HTML tags (`<u>`, `<b>`, `<i>`, `<details>`, `<summary>`), offline Mermaid architecture diagrams, LaTeX/KaTeX mathematical equations, tables, blockquotes, and lists.
+- **2D Flat Minimal Uncluttered UI**: Clean, distraction-free 2D interface with zero artificial elevations, featuring two pre-configured themes (Dark and Light) alongside an automated custom theme calculator that derives balanced palettes from your chosen base colors.
+- **In-Tab Search Modal**: Fast search overlay embedded within the tab view, providing real-time keyword highlighting, keyboard arrow navigation, and instant document selection.
 
 ### Non Functional
 
-- **Zero UI Thread Blocking**: All filesystem traversal, AST parsing, and chunking run concurrently on background worker threads.
-- **Sub-50ms Hybrid Retrieval**: Delivers sub-5ms direct index lookups and 15–40ms in-memory fuzzy search across thousands of documents.
-- **100% Keyboard Ergonomics**: Completely operable without a mouse, including directory configuration, search, navigation, and snippet insertion.
-- **Warm-Start Persistence**: Local SQLite database caches metadata and snippets for instant availability on window reload without disk rescans.
-- **Zero Editor Tab Sprawl**: Inline peek mode opens and collapses (`Esc`) non-destructively without creating permanent editor tabs.
-- **Lightweight Footprint**: Granular chunk indexing and compact search memory structures maintain low idle resource usage (<50MB).
-
----
+- **Fast & Typo-Tolerant Search**: High-speed indexed search powered by Tantivy BM25 relevance scoring with an automated fuzzy search fallback for typo tolerance.
+- **Decoupled Architecture**: Native background engine decoupled into an independent process communicating over JSON-RPC via standard pipes (`stdio`). The engine handles all background crawling, file parsing, indexing, and search execution, keeping the VS Code main UI thread unblocked and responsive at 60 FPS.
+- **Strict Directory Scoping**: Security-first path verification ensuring the engine only searches, reads, and accesses files located strictly within user-configured directories.
+- **Complete Offline Operation & Privacy**: 100% local execution with zero network calls, zero telemetry, and zero external runtime dependencies.
+- **Fast Incremental MTime Synchronization**: Directory crawler inspects file modification timestamps (`mtime`) to re-index only altered or newly added files, avoiding redundant disk I/O.
+- **Low Memory Footprint**: Compact Tantivy segment structures and SQLite cache management maintain a minimal background memory footprint.
 
 ## Prerequisites
 
 ### Requirements
 
-- **Visual Studio Code**: Version `^1.85.0` or higher (also compatible with VSCodium and other VS Code forks).
-- **Node.js Runtime**: Node.js `v18.x` or `v20.x+` (LTS recommended) for local development and compilation.
-- **TypeScript**: TypeScript `5.x` compiler toolchain.
-- **Operating System**: Cross-platform support for Linux (x86_64 / arm64), macOS (Intel / Apple Silicon), and Windows 10/11.
+To compile and build Context Glance from source on your local system:
+
+- Visual Studio Code version `^1.90.0` or higher
+- Node.js runtime `v18.x` or `v20.x+` (LTS recommended) and npm
+- Rust toolchain 1.75+ (`cargo` and `rustc`)
+- Operating system: Linux (x86_64 / arm64), macOS (Apple Silicon / Intel), or Windows 10/11
 
 ### Dependencies
 
-- **Visual Studio Code**: Version `^1.85.0` or higher (or compatible forks like VSCodium).
-- **Knowledge Base**: One or more local directories containing documentation files formatted as `.md`, `.markdown`, `.html`, or `.htm`.
+To run and use Context Glance directly without building from source:
 
----
+- Visual Studio Code version `^1.90.0` or higher (or compatible distribution such as VSCodium)
+- Local documentation directories containing Markdown files (`.md`, `.markdown`)
 
 ## Getting Started
 
-Installation and usage guidelines are documented in [`docs/begin.md`](./docs/begin.md).
+Installation and Usage Guidelines are inside the [docs/begin.md](docs/begin.md).

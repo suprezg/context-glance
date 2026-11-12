@@ -1,0 +1,26 @@
+[package]
+name = "context-glance-engine"
+version = "0.0.1"
+edition = "2024"
+
+[lib]
+name = "context_glance_engine"
+path = "lib.rs"
+
+[[bin]]
+name = "context-glance-engine"
+path = "main.rs"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rusqlite = { version = "0.40", features = ["bundled"] }
+tantivy = "0.27"
+walkdir = "2.5"
+regex = "1.11"
+anyhow = "1.0"
+pulldown-cmark = "0.13"
+
+[dev-dependencies]
+tempfile = "3"
+

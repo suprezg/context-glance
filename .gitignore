@@ -3,4 +3,5 @@ data/
 dist/
 target/
 node_modules/
-__pycache__/
+.vscode/
+*.vsix

@@ -1,0 +1,71 @@
+{
+  "name": "context-glance",
+  "displayName": "Context Glance",
+  "description": "Tab-based, keyboard-first documentation glance, rich media reference, and code snippet injection engine for Visual Studio Code.",
+  "version": "0.0.1",
+  "publisher": "suprezg",
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suprezg/context-glance.git"
+  },
+  "icon": "assets/logo.png",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "context-glance.openTab",
+        "category": "Context Glance",
+        "title": "Open Tab"
+      },
+      {
+        "command": "context-glance.closeTab",
+        "category": "Context Glance",
+        "title": "Close Tab"
+      },
+      {
+        "command": "context-glance.settings",
+        "category": "Context Glance",
+        "title": "Settings"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "context-glance.openTab",
+        "key": "ctrl+alt+g",
+        "mac": "cmd+alt+g"
+      },
+      {
+        "command": "context-glance.closeTab",
+        "key": "ctrl+alt+u",
+        "mac": "cmd+alt+u"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "node out/test/run_all_tests.js",
+    "package": "vsce package"
+  },
+  "dependencies": {
+    "katex": "^0.19.0",
+    "markdown-it": "^15.0.3",
+    "mermaid": "^12.2.0",
+    "shiki": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/katex": "^0.16.8",
+    "@types/markdown-it": "^14.2.0",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

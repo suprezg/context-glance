@@ -1,7 +1,7 @@
 ---
 name: Document Update
 about: Suggest improvements, fix outdated info, or catch typos in docs.
-title: "[DOCS]: "
+title: "[DOCS]: <Brief Title>"
 labels: ["documentation"]
 ---
 
